@@ -2,7 +2,7 @@ import torch
 import torch.nn.functional as F
 import torchvision.models as models
 import torch.optim as optim
-
+from tqdm import tqdm
 
 class VGG19(torch.nn.Module):
 
@@ -50,10 +50,8 @@ class Transferer:
 
     def fit(self, style_weight=1, content_weight=1000000, num_steps=300,
             cont_layers=range(3), style_layers=range(3)):
-        for e in range(num_steps):
-            print('epoch:', e)
-
-            def closure():
+        
+        def closure():
                 self.optimizer.zero_grad()
                 out = self.model(self.input_img.clone())
 
@@ -67,6 +65,8 @@ class Transferer:
                 loss = loss_cont*content_weight + loss_style*style_weight
                 loss.backward(retain_graph=True)
                 return loss
+        
+        for _ in tqdm(range(num_steps)):            
             self.optimizer.step(closure)
 
     def get_output(self, content=True, style=True):

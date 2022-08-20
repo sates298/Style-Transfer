@@ -18,10 +18,9 @@ def imshow(tensor, ax, title=None):
     ax.imshow(image)
     if title is not None:
         ax.set_title(title)
-    plt.pause(0.001)  # pause a bit so that plots are updated
 
 
-def plotting(output_img, style_img, content_img, rank=None):
+def plotting(output_img, style_img, content_img, dirname):
     counter = 3
     fig, axs = plt.subplots(1, counter)
     imshow(style_img, axs[0], title='Style Image')
@@ -30,10 +29,11 @@ def plotting(output_img, style_img, content_img, rank=None):
 
     out_ax = axs[2] if counter > 1 else axs
     imshow(output_img, out_ax, title='Output Image')
-    if not rank:
-        plt.show()
-    fname = f"test{time.time()}.jpg"
-    if rank:
-        fname = f"rank{rank}.jpg"
-    plt.savefig(fname)
-    # plt.show()
+    fname = "comparison.jpg"
+    plt.savefig(f"data/{dirname}/{fname}")
+    
+    plt.clf()
+    out_fname = "output.jpg"
+    plt.imshow(tensor_to_img(output_img))
+    plt.savefig(f"data/{dirname}/{out_fname}")
+    
