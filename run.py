@@ -5,10 +5,10 @@ from transfer import Transferer
 from plotting import plotting
 import sys
 
-content_weight = 100_000
+content_weight = 2_000_000
 
 style_layers = [0, 1, 2]
-content_layers = [1, 2]
+content_layers = [2]
 
 
 def main():
