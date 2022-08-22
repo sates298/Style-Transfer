@@ -1,5 +1,3 @@
-#!/home/steve/Dokumenty/style-transfer/venv/bin/python
-
 from loader import get_images
 from transfer import Transferer
 from plotting import plotting

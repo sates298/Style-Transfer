@@ -1,6 +1,5 @@
-torch
-torchvision
-matplotlib
-numpy
-tqdm
-pillow
+torch==1.11.0
+torchvision==0.12.0
+matplotlib==3.5.2
+numpy==1.22.3
+tqdm==4.64.0
